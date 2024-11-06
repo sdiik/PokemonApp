@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,27 +39,31 @@ fun SplashScreen(navController: NavHostController){
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.background(Color.Gray).fillMaxSize()
+        modifier = Modifier.background(Color.White).fillMaxSize()
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
-                painterResource(R.drawable.ic_launcher_background),
+                painterResource(R.drawable.ic_pokemon_logo),
                 contentDescription = "",
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.fillMaxWidth(0.3f)
             )
             Column(
-                modifier = Modifier.padding(start = 20.dp)
+                modifier = Modifier.padding(top = 4.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
                     text = "POKEMON",
-                    fontSize = 16.sp,
-                    color = Color.White
+                    fontSize = 24.sp,
+                    color = Color.Black,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Pokedro",
-                    fontSize = 48.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    text = "find the best one",
+                    fontSize = 12.sp,
+                    color = Color.DarkGray,
+                    textAlign = TextAlign.Center
                 )
             }
         }
