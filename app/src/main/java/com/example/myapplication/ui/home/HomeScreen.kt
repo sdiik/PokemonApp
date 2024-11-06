@@ -1,7 +1,5 @@
 package com.example.myapplication.ui.home
 
-import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -36,9 +34,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.R
+import com.example.myapplication.ui.PokemonAppDestinations
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import com.example.myapplication.ui.theme.textColor
 
@@ -60,7 +60,7 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
                     title = {
                         Row {
                             Image(
-                                painter = painterResource(R.drawable.ic_launcher_background),
+                                painter = painterResource(R.drawable.ic_pokemon_logo),
                                 contentDescription = "",
                                 contentScale = ContentScale.Fit,
                                 modifier = Modifier.width(width = 24.dp)
@@ -100,13 +100,13 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
                             viewModel = viewModel,
                             lazyGridState = pokemonGridState,
                             onPokemonItemClicked = {
-                                Log.d("POKEMONGrid", "Clicked")
+                                navController.navigate(PokemonAppDestinations.POKEMON_DETAIL)
                             }
                         )
                         1 -> FavouritePokemonGrid(
                             viewModel = viewModel,
                             onPokemonItemClicked = {
-                                Log.d("POKEMONGrid", "Clicked")
+                                navController.navigate(PokemonAppDestinations.POKEMON_DETAIL)
                             }
                         )
                     }

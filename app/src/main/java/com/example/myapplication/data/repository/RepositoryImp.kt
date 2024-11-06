@@ -15,6 +15,9 @@ class RepositoryImp @Inject constructor(
     override fun getPokemonList(limit: Int, offsite: Int): Flow<ApiResponse<List<PokemonDetails>>> = flow {
         try {
             val response = apiService.getPokemonList(limit, offsite)
+            Log.d("RESPONSE API", "data limit =======${limit}")
+            Log.d("RESPONSE API", "data offset =======${offsite}")
+            Log.d("RESPONSE API", "data =======${response}")
             val detailPokemonList = mutableListOf<PokemonDetails>()
             response.result.forEach{ pokemon: Pokemon ->
                 val pokemonDetails = apiService.getPokemonDetail(pokemon.url)

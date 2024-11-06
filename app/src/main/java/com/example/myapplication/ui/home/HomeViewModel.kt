@@ -124,4 +124,22 @@ class HomeViewModel @Inject constructor(
     fun setSelectedPokemon(pokemon: PokemonDetails) {
         _selectedPokemon.value = pokemon
     }
+
+    fun toggleFavoritePokemon(pokemon: PokemonDetails?) {
+        pokemon?.let { nonNullPokemon ->
+            val currentFavorites = _favoritePokemon.value.toMutableSet()
+            if (_favoritePokemon.value.contains(nonNullPokemon)) {
+                currentFavorites.remove(nonNullPokemon)
+                viewModelScope.launch {
+                    pokemon.id?.let { offlinePokemonRepository.removeFavorite(it) }
+                }
+            } else {
+                currentFavorites.add(nonNullPokemon)
+                viewModelScope.launch {
+                    pokemon.id?.let { offlinePokemonRepository.addFavorite(it) }
+                }
+            }
+            _favoritePokemon.value = currentFavorites
+        }
+    }
 }
